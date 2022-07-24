@@ -1,0 +1,35 @@
+<body>
+  <form [formGroup]="formulario">
+    <input type="text" class="form-control" id="titulo" formControlName="titulo" [hidden]="true">
+    <input type="text" class="form-control" id="descripcion" formControlName="descripcion" [hidden]="true">
+    <input type="text" class="form-control" id="idComic" formControlName="idComic" [hidden]="true">
+
+  </form>
+    <div class="container">
+        <div  *ngFor="let c of comicSeleccionado">  
+            <div class="row">
+                <h3 align="center" class="mt-3 mb-5">{{c.title}}</h3>
+    
+            </div>    
+        <div class="row">
+          <div class="col-6">
+            <img src="{{c.thumbnail.path +'/standard_medium.'+c.thumbnail.extension}}" width="100%" class="card-img-top" alt="Some Issue Loading Image..." />
+    
+            </div>
+          <div class="col-6" >
+            <h3 align="left">Descripción:</h3>
+            <p align="center">{{c.description ? c.description : "Sin Descripción"}} </p>
+            <h3 align="left" >Creadores:</h3>
+            <div  *ngFor="let nom_creadores of _creadores">
+                <p align="center" > {{nom_creadores.name ? nom_creadores.name : "Sin datos"}}</p>
+            </div>
+            <div align="end">
+                <button type="button" class="btn btn-primary" (click)="regresar()">Volver</button>
+                &nbsp;
+                <button type="button" class="btn btn-success" (click)="guardar()" *ngIf="!_esFavorito">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+</body>

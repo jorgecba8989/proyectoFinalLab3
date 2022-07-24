@@ -1,0 +1,25 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+<body>
+  <div class="container-fluid " >
+    <h4 align="center">Marvel Comics</h4>
+    <div class="row">
+      <div class="col-lg-3 mt-3 mb-3" *ngFor="let c of allComics">
+        <div class="card">
+          <img src="{{c.thumbnail.path +'/standard_medium.'+c.thumbnail.extension}}" width="100%" class="card-img-top" alt="Some Issue Loading Image..." />
+          <div class="card-body">
+            <p class="card-text" style="font-style: italic; font-size: 20px;">{{ c.title}}</p>
+            <p class="card-text" *ngIf="c.prices[0].price != 0" style="font-weight: bold">{{c.prices[0].price}} USD</p>
+            <p class="card-text" *ngIf="c.prices[0].price == 0" style="color: red;">Sold Out</p>
+            <a  [routerLink]="['/ver/',c.id]" class="btn btn-primary">Ver mas</a>
+            <!-- <a (click)="verMas(c.id)" [routerLink]="['/ver/',c.id]" class="btn btn-primary">Ver mas</a> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>  
+</body>

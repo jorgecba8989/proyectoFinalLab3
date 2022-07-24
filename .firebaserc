@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "recetasmimama": {
+      "hosting": {
+        "Recetario": [
+          "recetasmimama"
+        ]
+      }
+    }
+  }
+}
