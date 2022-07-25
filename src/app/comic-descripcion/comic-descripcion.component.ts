@@ -39,12 +39,18 @@ export class ComicDescripcionComponent implements OnInit {
       console.log(this.comicSeleccionado)
       this._nombreLibro = this.comicSeleccionado[0].title
 
+      let algo: any[] = this.comicSeleccionado[0].creators.items
+if(algo.length > 0){
+
       for(let item of this.comicSeleccionado[0].creators.items){
         let creadoresNombres: any  = [] ;
         creadoresNombres.name = item.name;
         this._creadores.push(creadoresNombres)
       }
-
+    }
+else{
+  this._creadores.push(null)
+}
       this.formulario.setValue({
         titulo: this.comicSeleccionado[0].title,
         descripcion: this.comicSeleccionado[0].description,

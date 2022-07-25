@@ -21,7 +21,9 @@
             <p align="center">{{c.description ? c.description : "Sin Descripción"}} </p>
             <h3 align="left" >Creadores:</h3>
             <div  *ngFor="let nom_creadores of _creadores">
-                <p align="center" > {{nom_creadores.name ? nom_creadores.name : "Sin datos"}}</p>
+              <p align="center" *ngIf="nom_creadores === null">Sin datos</p>
+              <p align="center" *ngIf="nom_creadores">{{nom_creadores.name}}</p>
+                <!-- <p align="center" > {{nom_creadores.name ? nom_creadores.name : "Sin datos"}}</p> -->
             </div>
             <div align="end">
                 <button type="button" class="btn btn-primary" (click)="regresar()">Volver</button>
