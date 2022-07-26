@@ -8,15 +8,13 @@
 
             </div>
             <div class="row">
-                <div class="col-lg-3 mt-3 mb-3" *ngFor="let c of searchedCharacter">
-                  <div class="card">
-                    <img src="{{c.thumbnail.path +'/standard_medium.'+c.thumbnail.extension}}" width="100%" class="card-img-top" alt="Some Issue Loading Image..." />
+                <div class="col-lg-3 mt-3 mb-3" *ngFor="let c of favoritos">
+                  <div class="card" *ngIf="c.visible">
                     <div class="card-body">
-                      <p class="card-text" style="font-style: italic; font-size: 20px;">{{ c.title}}</p>
-                      <p class="card-text" *ngIf="c.prices[0].price != 0" style="font-weight: bold">{{c.prices[0].price}} USD</p>
-                      <p class="card-text" *ngIf="c.prices[0].price == 0" style="color: red;">Sold Out</p>
-                      <a  [routerLink]="['/ver/','favorito',c.id]" class="btn btn-primary">Ver mas</a>
-          
+                      <p class="card-text" style="font-style: italic; font-size: 20px;">{{ c.titulo}}</p>
+                      <a  [routerLink]="['/ver/','favorito',c.idComic]" class="btn btn-primary">Ver mas</a>
+                      <a class="btn btn-danger"  (click)="eliminar(c)">Eliminar</a>&nbsp;&nbsp;
+
                     </div>
                   </div>
                 </div>

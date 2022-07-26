@@ -14,8 +14,6 @@
             <p class="card-text" *ngIf="c.prices[0].price != 0" style="font-weight: bold">{{c.prices[0].price}} USD</p>
             <p class="card-text" *ngIf="c.prices[0].price == 0" style="color: red;">Sold Out</p>
             <a  [routerLink]="['/ver/',c.id]" class="btn btn-primary">Ver mas</a>
-            <!-- <a (click)="verMas(c.id)" [routerLink]="['/ver/',c.id]" class="btn btn-primary">Ver mas</a> -->
-
           </div>
         </div>
       </div>

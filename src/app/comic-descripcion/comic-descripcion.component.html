@@ -1,3 +1,7 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
 <body>
   <form [formGroup]="formulario">
     <input type="text" class="form-control" id="titulo" formControlName="titulo" [hidden]="true">
@@ -8,7 +12,7 @@
     <div class="container">
         <div  *ngFor="let c of comicSeleccionado">  
             <div class="row">
-                <h3 align="center" class="mt-3 mb-5">{{c.title}}</h3>
+                <h1 align="center" class="mt-3 mb-5">{{c.title}}</h1>
     
             </div>    
         <div class="row">
@@ -23,7 +27,6 @@
             <div  *ngFor="let nom_creadores of _creadores">
               <p align="center" *ngIf="nom_creadores === null">Sin datos</p>
               <p align="center" *ngIf="nom_creadores">{{nom_creadores.name}}</p>
-                <!-- <p align="center" > {{nom_creadores.name ? nom_creadores.name : "Sin datos"}}</p> -->
             </div>
             <div align="end">
                 <button type="button" class="btn btn-primary" (click)="regresar()">Volver</button>

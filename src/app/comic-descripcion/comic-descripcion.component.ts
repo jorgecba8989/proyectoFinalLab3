@@ -36,11 +36,10 @@ export class ComicDescripcionComponent implements OnInit {
 
     this.service.comicSeleccionado(this.id).subscribe((result)=>{
       this.comicSeleccionado = result.data.results;
-      console.log(this.comicSeleccionado)
       this._nombreLibro = this.comicSeleccionado[0].title
 
-      let algo: any[] = this.comicSeleccionado[0].creators.items
-if(algo.length > 0){
+      let _creadorComic: any[] = this.comicSeleccionado[0].creators.items
+      if(_creadorComic.length > 0){
 
       for(let item of this.comicSeleccionado[0].creators.items){
         let creadoresNombres: any  = [] ;
@@ -48,9 +47,9 @@ if(algo.length > 0){
         this._creadores.push(creadoresNombres)
       }
     }
-else{
-  this._creadores.push(null)
-}
+    else{
+      this._creadores.push(null)
+    }
       this.formulario.setValue({
         titulo: this.comicSeleccionado[0].title,
         descripcion: this.comicSeleccionado[0].description,
@@ -61,8 +60,8 @@ else{
   }
 
   guardar(){
-    this.db.collection('comics').add(this.formulario.value).then((termino)=>{
-      this.msj.mensajeCorrecto("Listo", "Lo agregaste a favoritos")
+    this.db.collection('misFavoritos').add(this.formulario.value).then((termino)=>{
+      this.msj.mensajeCorrecto("Felicitaciones", "Lo agregaste a favoritos")
     })
 
   }

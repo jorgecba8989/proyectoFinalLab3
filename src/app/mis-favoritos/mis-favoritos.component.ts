@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { Favorito } from '../models/favorito';
 import { ApiMarvelService } from '../services/api-marvel.service';
 
 @Component({
@@ -11,27 +12,24 @@ import { ApiMarvelService } from '../services/api-marvel.service';
 export class MisFavoritosComponent implements OnInit {
 
   comicBuscado: any=[];
-  characterName: string = '';
-  showSearchResult:boolean= false;
-  searchedCharacter:any=[];
-  formularioBusqueda!: FormGroup;
-  favoritos: any[] = new Array<any>();
+  favoritos: Favorito[] = new Array<Favorito>();
+  favoritoEncontrado:any=[];
 
 
   constructor(private service:ApiMarvelService,
-    private db: AngularFirestore
-              // public fb:FormBuilder,
+              private db: AngularFirestore
               ) { }
 
   ngOnInit(): void {
     this.favoritos.length = 0;
-    this.db.collection('comics').get().subscribe((resultado)=>{
+    this.db.collection('misFavoritos').get().subscribe((resultado)=>{
 
       for(let item of resultado.docs){
           console.log(item.id) 
           
           let favoritoBD: any  = item.data() ;
           favoritoBD.id = item.id;
+          favoritoBD.visible = false
           this.favoritos.push(favoritoBD)
       }
     })
@@ -39,25 +37,23 @@ export class MisFavoritosComponent implements OnInit {
 
 
 
-  buscar(event : any){
+  buscar(item : any){
     this.favoritos.forEach((f)=>{
-      if(f.titulo.toLowerCase().includes(event.toLowerCase()))
+      if(f.titulo.toLowerCase().includes(item.toLowerCase()))
       {
-        this.characterName = f.titulo;
-        let obtenerIdComic = f.idComic
-        this.service.comicSeleccionado(obtenerIdComic).subscribe((result)=>{
-          if(result.data.count>0)
-          {
-            this.showSearchResult = true;
-            this.searchedCharacter = result.data.results;
-          }
-        })
+        f.visible = true;
+
         }
-      // else{
-       
-      // }
+      else{
+        f.visible  = false;
+      }
     })
 
+  }
+
+  eliminar(item:any){
+    this.db.collection("misFavoritos").doc(item.id).delete();
+    document.location.href = './favoritos';
   }
 
 }
