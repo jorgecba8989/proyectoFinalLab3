@@ -1,0 +1,48 @@
+<body>
+    <div class="container-fluid mt-3">
+        <div class="row">
+          <div class="col-lg-12">
+            <input type="text" name="buscador" id="buscador" placeholder="Ingresa su busqueda..." class="form-control"  name='characterName' id='characterName'
+            placeholder="Ingrese su busqueda..." aria-label="Search" (keyup)="findCharacter($event)">
+          </div>  
+        </div>
+      </div>
+
+      <div class="container-fluid mt-5" *ngIf="!showSearchResult">
+        <div class="row">
+          <div
+            class="col-lg-3 mt-3 mb-3"
+            *ngFor="let characters of allCharacters"
+          >
+            <div class="card">
+              <img src="{{characters.thumbnail.path +'/standard_fantastic.'+characters.thumbnail.extension}}" width="100%" class="card-img-top" alt="Some Issue Loading Image..." />
+              <div class="card-body">
+                <p style="font-style: italic; font-size: 20px;" class="card-title">{{ characters.name }}</p>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        </div>
+
+        <div class="container-fluid mt-5" *ngIf="showSearchResult">
+            <div class="row">
+              <div
+                class="col-lg-3 mt-3 mb-3"
+                *ngFor="let characters of searchedCharacter"
+              >
+                <div class="card">
+                  <img src="{{characters.thumbnail.path +'/standard_medium.'+characters.thumbnail.extension}}" width="100%" class="card-img-top" alt="Some Issue Loading Image..." />
+                  <div class="card-body">
+                    <p style="font-style: italic; font-size: 20px;" class="card-title">{{ characters.name }}</p>   
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            </div>
+
+            
+</body>

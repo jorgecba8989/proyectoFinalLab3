@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComicDescripcionComponent } from './comic-descripcion/comic-descripcion.component';
 import { SeriesComponent } from './series/series.component';
 import { MisFavoritosComponent } from './mis-favoritos/mis-favoritos.component';
+import { PersonajesComponent } from './personajes/personajes.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MisFavoritosComponent } from './mis-favoritos/mis-favoritos.component';
     ComicDescripcionComponent,
     SeriesComponent,
     MisFavoritosComponent,
+    PersonajesComponent,
    
   ],
   imports: [
