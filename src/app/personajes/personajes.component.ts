@@ -9,10 +9,7 @@ import { ApiMarvelService } from '../services/api-marvel.service';
 export class PersonajesComponent implements OnInit {
 
   allCharacters:any=[] = new Array<any>();
-  comics:any=[];
-  series:any=[];
-  showComicsDiv:boolean = false;
-  showSeriesDiv:boolean = false;
+
   characterName:string = "";
   showSearchResult:boolean = false;
   searchedCharacter:any=[];
@@ -20,8 +17,7 @@ export class PersonajesComponent implements OnInit {
   constructor(private service:ApiMarvelService) { }
 
   ngOnInit(): void {
-    this.showComicsDiv = false;
-    this.showSeriesDiv = false;
+  
     this.showSearchResult = false;
     this.service.allCharacters().subscribe((result)=>{
       this.allCharacters = result.data.results;
